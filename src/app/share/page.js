@@ -8,7 +8,7 @@ export default function SharePage() {
   const [sharedLink, setSharedLink] = useState("");
 
   useEffect(() => {
-    const url = searchParams.get("url");
+    const url = searchParams?.get("url") ?? "";
     if (url) setSharedLink(url);
   }, [searchParams]);
 
@@ -16,12 +16,9 @@ export default function SharePage() {
     <div>
       <h2>Shared to Bave🫦</h2>
       {sharedLink ? (
-        <>
-          <p>Received Link:</p>
-          <a href={sharedLink} target="_blank" rel="noopener noreferrer">
-            {sharedLink}
-          </a>
-        </>
+        <a href={sharedLink} target="_blank" rel="noopener noreferrer">
+          {sharedLink}
+        </a>
       ) : (
         <p>No link received</p>
       )}
