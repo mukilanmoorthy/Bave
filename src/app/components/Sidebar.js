@@ -5,7 +5,7 @@ import { IoMdClose } from "react-icons/io";
 import { TbEdit } from "react-icons/tb";
 import { IoSearch } from "react-icons/io5";
 import { IoBookmarkOutline } from "react-icons/io5";
-
+import Link from "next/link";
 export default function Sidebar(){
      
     const [isOpen , setIsOpen] = useState(false);
@@ -59,10 +59,13 @@ export default function Sidebar(){
 <p>Search saved</p>
      </div>
 
+
+     <Link href="/dashboard/hub">
       <div className="flex px-[6px] py-[10px] mx-0 my-[6px] gap-1.5">
 <IoBookmarkOutline className="w-[20px] h-[20px]"/>
 <p>Hub</p>
      </div>
+</Link> 
 
 
      </div>

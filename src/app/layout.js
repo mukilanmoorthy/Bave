@@ -1,18 +1,13 @@
-"use client";
-import { useEffect, useState } from "react";
-
-export default function RootLayout({ children }) {
-  const [isMounted, setIsMounted] = useState(false);
-
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
-
-  return (
-    <html lang="en">
+export default function RootLayout({children}){
+  return(
+    <html>
+      <head>
+        <link rel="manifest" href="/manifest.json"/>
+        <meta name="theme-color" content="#2b6cb0"/>
+      </head>
       <body>
-        {isMounted ? children : null}
+        {children}
       </body>
     </html>
-  );
-}
+  )
+};

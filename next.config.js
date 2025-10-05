@@ -1,16 +1,11 @@
-/** @type {import('next').NextConfig} */
-module.exports = {
-  experimental: {
-    optimizeCss: true,
-  },
+const withPWA = require("next-pwa")({
+  dest: "public",
+  register: true,
+  skipWaiting:true,
+  disable:process.env.NODE_ENV === "development"
+});
 
-  async redirects() {
-    return [
-      {
-        source: "/",           
-        destination: "/dashboard", 
-        permanent: true,      
-      },
-    ];
-  },
-};
+module.exports = withPWA({
+  experimental:{appDir : true},
+  reactStrictMode: true
+});
