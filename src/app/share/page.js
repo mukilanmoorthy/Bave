@@ -2,15 +2,16 @@
 
 import { useSearchParams } from "next/navigation";
 import { useState , useEffect } from "react";
+import Link from "next/link"
 
 export default function SharePage(){
 
-  const searchParms = useSearchParams();
-  const [shareData , setShareData] =  useState("");
+  const searchParams = useSearchParams();
+  const [shareData , setShareData] =  useState(null);
   useEffect(()=>{
-    const title = searchParms.get("title");
-    const text = searchParms.get("text");
-    const url = searchParms.get("url");
+    const title = searchParams.get("title");
+    const text = searchParams.get("text");
+    const url = searchParams.get("url");
 
     if(title || text || url){
       const newShare = {title , text , url , time : new Date().toString()};
@@ -21,7 +22,7 @@ export default function SharePage(){
 
       setShareData(newShare);
     }
-  },[searchParms]);
+  },[searchParams]);
 
   if(!shareData) return <p>Processing shared content...</p>
   return(
@@ -30,7 +31,9 @@ export default function SharePage(){
       <p><strong>Title:</strong>{shareData.title}</p>
       <p><strong>Text:</strong>{shareData.text}</p>
       <p><strong>URL:</strong>{shareData.url}</p>
-      <a href="">Go to Home</a>
+      <Link href="/">
+      Go to Home
+      </Link>
     </div>
   )
 };
