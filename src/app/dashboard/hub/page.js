@@ -11,7 +11,7 @@ export default function HubPage(){
         setSharItems(saved.reverse());
     },[]);
     return(
-        <div>
+        <div className="min-h-screen flex items-center justify-center">
             <h1>Link 🫦 Hub</h1>
             {sharItems.length === 0 ?(
                 <p>No shared links yet.</p>
