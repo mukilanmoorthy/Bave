@@ -1,14 +1,16 @@
+"use client";
 import { useState, useEffect } from "react";
+import { useSearchParams } from "next/navigation";
 import Link from "next/link";
-import { useRouter } from "next/router";
 
 export default function SharePage() {
-  const router = useRouter();
+  const searchParams = useSearchParams();
   const [shareData, setShareData] = useState(null);
 
   useEffect(() => {
-    const query = router.query;
-    const { title, text, url } = query;
+    const title = searchParams.get("title");
+    const text = searchParams.get("text");
+    const url = searchParams.get("url");
 
     if (title || text || url) {
       const newShare = { title, text, url, time: new Date().toString() };
@@ -17,7 +19,7 @@ export default function SharePage() {
       localStorage.setItem("bave_shares", JSON.stringify(storedShares));
       setShareData(newShare);
     }
-  }, [router.query]);
+  }, [searchParams]);
 
   if (!shareData) return <p>Processing shared content...</p>;
 
