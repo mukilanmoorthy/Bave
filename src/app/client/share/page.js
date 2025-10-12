@@ -1,9 +1,9 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 
-export default function SharePage() {
+function SharePageContent() {
   const searchParams = useSearchParams();
   const [shareData, setShareData] = useState(null);
 
@@ -31,5 +31,13 @@ export default function SharePage() {
       <p><strong>URL:</strong> {shareData.url}</p>
       <Link href="/">Go to Home</Link>
     </div>
+  );
+}
+
+export default function SharePage() {
+  return (
+    <Suspense fallback={<p>Loading share data...</p>}>
+      <SharePageContent />
+    </Suspense>
   );
 }
