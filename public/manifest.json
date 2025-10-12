@@ -9,7 +9,7 @@
   "background_color": "#ffffff",
   "theme_color": "#2b6cb0",
   "share_target": {
-    "action": "/share",
+    "action": "/share-client",
     "method": "GET",
     "params": {
       "title": "title",
