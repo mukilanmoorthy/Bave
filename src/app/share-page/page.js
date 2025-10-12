@@ -1,11 +1,11 @@
 "use client";
 export const dynamic = "force-dynamic";
 
+import { Suspense, useState, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
-import { useState, useEffect } from "react";
 import Link from "next/link";
 
-export default function SharePage() {
+function ShareContent() {
   const searchParams = useSearchParams();
   const [shareData, setShareData] = useState(null);
 
@@ -33,5 +33,13 @@ export default function SharePage() {
       <p><strong>URL:</strong> {shareData.url}</p>
       <Link href="/">Go to Home</Link>
     </div>
+  );
+}
+
+export default function SharePage() {
+  return (
+    <Suspense fallback={<p>Loading shared content...</p>}>
+      <ShareContent />
+    </Suspense>
   );
 }
